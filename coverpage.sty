@@ -1,7 +1,162 @@
 \ProvidesPackage{coverpage}
 
-\newcommand{\makecover}[1]{\
-    this is a cover
+\newcommand{\makecover}{\
+
+    % switch off page numbers
+    \pagenumbering{gobble}
+
+    \begin{center}
+        \scshape
+
+        \LARGE A Report on\break%
+
+        \Huge
+        \@title
+        \vfill
+
+        \large
+        by\break%
+
+
+        \LARGE
+        Utkarsh Maheshwari\break%
+        2015A7PS0022G\break%
+        \vfill
+
+        \large
+        at\break%
+
+        \LARGE
+        Altair Engineering, Inc.\break%
+        \large
+        A Practice School II Station of\break%
+        \vfill
+        
+        \LARGE
+        Birla Institute of Technology and Science, Pilani\break%
+        \newline
+        \large
+        \today
+
+    \end{center}
+    \newpage
+
+    % switch on page numbers
+    \pagenumbering{arabic}
+}
+
+\newcommand{\maketitlepage}{%
+
+    % switch off page numbers
+    \pagenumbering{gobble}
+
+    \begin{center}
+        \scshape
+
+        \LARGE A Report on\break%
+
+        \Huge
+        \@title
+        \vfill
+
+        \large
+        by\break%
+
+
+        \LARGE
+        Utkarsh Maheshwari\break%
+        2015A7PS0022G\break%
+        Computer Science\break%
+        \vfill
+
+        \large
+        Prepared in partial fulfillment of the\break%
+        Practice School II Course\break%
+        \vfill
+
+        \large
+        at\break%
+
+        \LARGE
+        Altair Engineering, Inc.\break%
+        \large
+        A Practice School II Station of\break%
+        \vfill
+        
+        \LARGE
+        Birla Institute of Technology and Science, Pilani\break%
+        \newline
+        \large
+        \today
+
+    \end{center}
+    \newpage
+
+    % switch on page numbers
+    \pagenumbering{arabic}
+}
+
+\newcommand{\makeabstract}{\
+    \begin{center}
+        \LARGE
+        {
+            \scshape
+            Birla Institute of Technology and Science,\break%
+            Pilani (Rajasthan)\break%
+        }
+        \large
+        Practice School Division\break%
+    \end{center}
+    \vfill
+
+    {
+        \large
+        \noindent
+        \textbf{Station:} Altair Engineering, Inc.\newline
+        \textbf{Center:} Bangalore, Karnataka.\newline
+        \textbf{Duration:} 5 1/2 months\newline
+        \textbf{Date of Start:} 4\textsuperscript{th} July, 2018\newline
+        \vfill
+
+        \noindent
+        \textbf{Title:}
+        \@title\break%
+        \vfill
+
+        \noindent
+        \textbf{Student:}\\
+        Utkarsh Maheshwari\\
+        2015A7PS0022G\\
+        Computer Science\\
+        \vfill
+
+        \noindent
+        \textbf{Expert:}\\
+        Subhasis Bhattacharya\\
+        Director - Software Development\\
+        Altair Engineering, Inc.\\
+        \vfill
+
+        \noindent
+        \textbf{Faculty:}\\
+        Mr. Srinivas Kota\\
+        \vfill
+
+        \noindent
+        \textbf{Keywords:}\\
+        \textbf{Project Areas:}\\
+        \textbf{Abstract:}
+        \break\newline\newline
+        \vfill
+
+        \noindent
+        Signature of Student\hfill
+        Signature of PS Faculty\break
+        \newline
+        Date\hfill
+        Date
+
+    }
 } 
 
 \endinput

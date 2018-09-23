@@ -5,15 +5,17 @@
 \usepackage{titlesec}
 \usepackage{coverpage}
 \usepackage[paperwidth=9in, paperheight=11in, margin=1in]{geometry}
-\usepackage{blindtext}
+%\usepackage{blindtext}
 \usepackage[toc]{glossaries}
 \usepackage{listings}
 
+
+\newcommand{\blindtext}[0]{} 
 % define glossary items
 \makeglossaries
 \input{glossaryentries}
 
-\title{Project Report}
+\title{Addition of \gls{pbs} as a cluster manager in Apache \gls{spark}}
 \author{Utkarsh Maheshwari}
 
 \titleformat{\chapter}[display]
@@ -22,14 +24,11 @@
 \begin{document}
 
 \makecover
-
-\maketitle
+\maketitlepage
+\makeabstract
 
 \chapter{Acknowledgements}
 \input{chapters/acknowledgements}
-
-\chapter{Abstract}
-\input{chapters/abstract}
 
 \tableofcontents
 
