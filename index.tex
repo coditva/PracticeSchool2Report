@@ -1,0 +1,47 @@
+\documentclass[12pt, a4paper, oneside, titlepage]{report}
+\special{papersize=9in,11in}
+
+\usepackage{coverpage}
+\usepackage[paperwidth=9in, paperheight=11in, margin=1in]{geometry}
+\usepackage{blindtext}
+\usepackage[toc]{glossaries}
+
+% define glossary items
+\makeglossaries
+\input{glossaryentries}
+
+\title{Project Report}
+\author{Utkarsh Maheshwari}
+
+\begin{document}
+
+\makecover
+
+\maketitle
+
+\chapter{Acknowledgements}
+\input{chapters/acknowledgements}
+
+\chapter{Abstract}
+\input{chapters/acknowledgements}
+
+\tableofcontents
+
+\chapter{Introduction}
+\input{chapters/acknowledgements}
+
+\chapter{Main Text}
+\input{chapters/acknowledgements}
+
+\chapter{Conclusions}
+\input{chapters/acknowledgements}
+
+\chapter{Appendices}
+\input{chapters/acknowledgements}
+
+\chapter{References}
+\input{chapters/acknowledgements}
+
+\printglossaries
+
+\end{document}
