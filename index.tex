@@ -1,10 +1,13 @@
 \documentclass[12pt, a4paper, oneside, titlepage]{report}
 \special{papersize=9in,11in}
 
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
 \usepackage{coverpage}
 \usepackage[paperwidth=9in, paperheight=11in, margin=1in]{geometry}
 \usepackage{blindtext}
 \usepackage[toc]{glossaries}
+\usepackage{listings}
 
 % define glossary items
 \makeglossaries
@@ -12,6 +15,9 @@
 
 \title{Project Report}
 \author{Utkarsh Maheshwari}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Huge}
 
 \begin{document}
 
@@ -23,24 +29,24 @@
 \input{chapters/acknowledgements}
 
 \chapter{Abstract}
-\input{chapters/acknowledgements}
+\input{chapters/abstract}
 
 \tableofcontents
 
 \chapter{Introduction}
-\input{chapters/acknowledgements}
+\input{chapters/introduction}
 
-\chapter{Main Text}
-\input{chapters/acknowledgements}
+\chapter{Project details}
+\input{chapters/main}
 
 \chapter{Conclusions}
-\input{chapters/acknowledgements}
+\input{chapters/conclusions}
 
 \chapter{Appendices}
-\input{chapters/acknowledgements}
+\input{chapters/appendices}
 
 \chapter{References}
-\input{chapters/acknowledgements}
+\input{chapters/references}
 
 \printglossaries
 

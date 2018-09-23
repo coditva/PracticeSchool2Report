@@ -1,9 +1,9 @@
 TARGET = index
 
 .PHONY: all
-all: pdf
+all: ${TARGET}.pdf
 
-pdf: ${TARGET}.glg
+${TARGET}.pdf: ${TARGET}.glg
 	latexmk -pdf index.tex
 
 ${TARGET}.glg: ${TARGET}.aux
