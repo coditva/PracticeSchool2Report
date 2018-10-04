@@ -11,3 +11,7 @@ ${TARGET}.glg: ${TARGET}.aux
 
 ${TARGET}.aux: index.tex
 	latex index.tex
+
+clean:
+	rm -rf *.aux *.dvi *.fdb_latexmk *.fls *.glg *.glo *.gls *.ist *.log *.pdf \
+		*.toc
