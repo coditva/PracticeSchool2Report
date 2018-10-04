@@ -1,17 +1,33 @@
-TARGET = index
+TEX_C     = latex
+TEX_C_PDF = pdflatex
+TEX_C_GLO = makeglossaries
 
-.PHONY: all
-all: ${TARGET}.pdf
+TARGET    = index
+GLOSSARY  = glossaryentries.tex
+CHAPTERS  = chapters/appendices.tex \
+            chapters/conclusions.tex \
+            chapters/introduction.tex \
+            chapters/main.tex \
+            chapters/acknowledgements.tex \
+            chapters/references.tex
 
-${TARGET}.pdf: ${TARGET}.glg
-	latexmk -pdf index.tex
+.PHONY: all pdf
 
-${TARGET}.glg: ${TARGET}.aux
-	makeglossaries  index
+all: pdf
+pdf: ${TARGET}.pdf
 
-${TARGET}.aux: index.tex
-	latex index.tex
+${TARGET}.pdf: ${TARGET}.gls ${TARGET}.aux
+	${TEX_C_PDF} ${TARGET}
+
+# When making glossaries, we always need the aux file. This is generated in this
+# target itself and not added as a dependency because it gets modified when
+# creating the .gls file.
+${TARGET}.gls: ${GLOSSARY}
+	${TEX_C} ${TARGET}
+	${TEX_C_GLO} ${TARGET}
+
+${TARGET}.aux: ${TARGET}.tex ${CHAPTERS} ${GLOSSARY}
+	${TEX_C} ${TARGET}
 
 clean:
-	rm -rf *.aux *.dvi *.fdb_latexmk *.fls *.glg *.glo *.gls *.ist *.log *.pdf \
-		*.toc
+	rm -rf *.aux *.dvi *.fls *.glg *.glo *.gls *.ist *.pdf *.toc
