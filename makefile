@@ -9,7 +9,8 @@ CHAPTERS  = chapters/appendices.tex \
             chapters/introduction.tex \
             chapters/main.tex \
             chapters/acknowledgements.tex \
-            chapters/references.tex
+            chapters/references.tex \
+            chapters/abstract.tex
 DEPS      = ${CHAPTERS} \
 			coverpage.sty \
 			assets/images/*
