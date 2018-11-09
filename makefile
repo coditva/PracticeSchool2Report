@@ -28,9 +28,10 @@ ${TARGET}.pdf: ${TARGET}.gls ${TARGET}.aux
 ${TARGET}.gls: ${GLOSSARY}
 	${TEX_C} ${TARGET}
 	${TEX_C_GLO} ${TARGET}
+	${TEX_C} ${TARGET}
 
 ${TARGET}.aux: ${TARGET}.tex ${DEPS} ${GLOSSARY}
 	${TEX_C} ${TARGET}
 
 clean:
-	rm -rf *.aux *.dvi *.fls *.glg *.glo *.gls *.ist *.pdf *.toc
+	rm -rf *.aux *.dvi *.fls *.glg *.glo *.gls *.ist *.pdf *.toc *.out
