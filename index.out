@@ -1,0 +1,22 @@
+\BOOKMARK [0][-]{chapter.1}{Acknowledgements}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Introduction}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Project details}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Problem statement}{chapter.3}% 4
+\BOOKMARK [1][-]{section.3.2}{Potential solutions}{chapter.3}% 5
+\BOOKMARK [1][-]{section.3.3}{Solution description}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.4}{Implementation}{chapter.3}% 7
+\BOOKMARK [2][-]{subsection.3.4.1}{Job submission in Spark}{section.3.4}% 8
+\BOOKMARK [2][-]{subsection.3.4.2}{Job submission in PBS}{section.3.4}% 9
+\BOOKMARK [2][-]{subsection.3.4.3}{Overriding Spark's cluster manager}{section.3.4}% 10
+\BOOKMARK [1][-]{section.3.5}{Result}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.5.1}{Installation}{section.3.5}% 12
+\BOOKMARK [2][-]{subsection.3.5.2}{Usage}{section.3.5}% 13
+\BOOKMARK [0][-]{chapter.4}{Conclusions}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Change for clients}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{Issues}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.3}{Further scope of improvement}{chapter.4}% 17
+\BOOKMARK [0][-]{chapter.5}{Appendices}{}% 18
+\BOOKMARK [1][-]{section.5.1}{about pbs}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.2}{about spark}{chapter.5}% 20
+\BOOKMARK [0][-]{chapter.6}{References}{}% 21
+\BOOKMARK [0][-]{section*.14}{Glossary}{}% 22

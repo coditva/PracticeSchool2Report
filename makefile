@@ -10,6 +10,9 @@ CHAPTERS  = chapters/appendices.tex \
             chapters/main.tex \
             chapters/acknowledgements.tex \
             chapters/references.tex
+DEPS      = ${CHAPTERS} \
+			coverpage.sty \
+			assets/images/*
 
 .PHONY: all pdf
 
@@ -26,7 +29,7 @@ ${TARGET}.gls: ${GLOSSARY}
 	${TEX_C} ${TARGET}
 	${TEX_C_GLO} ${TARGET}
 
-${TARGET}.aux: ${TARGET}.tex ${CHAPTERS} ${GLOSSARY}
+${TARGET}.aux: ${TARGET}.tex ${DEPS} ${GLOSSARY}
 	${TEX_C} ${TARGET}
 
 clean:
