@@ -3,7 +3,8 @@
 \newglossaryentry{pbs}{
     name=Portable Batch System,
     symbol=PBS,
-    description={A workload manager}
+    description={A computer software to manage job scheduling efficiently on a
+        large number of compute nodes. See Appendix for more information}
 }
 
 \newglossaryentry{hpc}{
@@ -12,48 +13,54 @@
     description={
         High-performance computing is the use of parallel processing
         for running advanced application programs efficiently, reliably and
-        quickly.
-    }
-}
-
-\newglossaryentry{job}{
-    name=job,
-    description={A program run on a computer.}
+        quickly}
 }
 
 \newglossaryentry{spark}{
     name=Spark,
-    description={A Big Data analytics thing}
-}
-
-\newglossaryentry{executor}{
-    name={Spark Executor},
-    description=executor,
-    plural={Spark Executors},
-}
-
-\newglossaryentry{walltime}{
-    name=walltime,
-    description={what is walltime},
-}
-
-\newglossaryentry{yarn}{
-    name=Apache Hadoop Yarn,
-    description=todo.
-}
-
-\newglossaryentry{mesos}{
-    name=Apache Mesos,
-    description=todo.
-}
-
-\newglossaryentry{kubernetes}{
-    name=Kubernetes,
-    description=todo.
+    description={A data analytics engine owned by Apache for parallelizing
+        data processing. See Appendix for more information}
 }
 
 \newglossaryentry{driver}{
     name=Spark Driver,
-    description=todo,
+    description={A process running the main() function of the application and
+        creating the SparkContext}
+}
+
+\newglossaryentry{executor}{
+    name={Spark Executor},
+    plural={Spark Executors},
+    description={A process launched for an application on a worker node, that
+        runs tasks and keeps data in memory or disk storage across them. Each
+        application has its own executors}
+}
+
+\newglossaryentry{job}{
+    name=job,
+    description={A computer program comprising of tasks/steps that performs some
+        work. It can be a shell script, a C program, a python script and so on}
+}
+
+\newglossaryentry{walltime}{
+    name=walltime,
+    description={The actual time taken from start to the end of a job},
+}
+
+\newglossaryentry{yarn}{
+    name=Apache Hadoop Yarn,
+    description={A resource manager running on a Hadoop cluster}
+}
+
+\newglossaryentry{mesos}{
+    name=Apache Mesos,
+    description={A cluster manager initially developed at UC, Berkley and now
+        owned by Apache}
+}
+
+\newglossaryentry{kubernetes}{
+    name=Kubernetes,
+    description={A container-orchestration system for automating deployment,
+        scaling and management of containerized applications}
 }
 
