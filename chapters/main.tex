@@ -75,6 +75,14 @@ two ways in which an \gls{executor} can associate with a
         stopped dynamically for each task.
 \end{description}
 
+\begin{figure}[h]
+    \centering
+    \fbox{
+        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=900]
+            {assets/images/Cluster.png}
+        }
+    \caption{Spark Cluster UI page displaying jobs on PBS Cluster}
+\end{figure}
 
 \subsection{Job submission in PBS}
 \paragraph{}
@@ -91,6 +99,15 @@ in Spark. This class is responsible to create an instance of
 is responsible to start the \glspl{executor} and we change that so that it
 now submits the \glspl{executor} as jobs to \glssymbol{pbs} instead.
 
+\begin{figure}[h]
+    \centering
+    \fbox{
+        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=849]
+            {assets/images/Jobs.png}
+        }
+    \caption{Spark Job page for each Spark Driver}
+\end{figure}
+
 \paragraph{}
 The above setup works well for a job where the \gls{driver} is run locally. But
 to allow the \gls{driver} to run remotely on a cluster, we must also be able to
@@ -98,6 +115,15 @@ submit the \gls{driver} as a \glssymbol{pbs} job. To do this, we also override
 \texttt{SparkApplication} which is instantiated whenever a \gls{spark} job is
 submitted. This is responsible to start the \gls{driver} which we now just start
 as a \glssymbol{pbs} job.
+
+\begin{figure}[h]
+    \centering
+    \fbox{
+        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=849]
+            {assets/images/Executors.png}
+        }
+    \caption{Job page listing executors which are running on PBS cluster nodes}
+\end{figure}
 
 
 \section{Result}
@@ -123,3 +149,12 @@ pattern:
     bin/spark-submit --master pbs --deploy-mode cluster \
         --class <main-class> <application-jar> [application args]
 \end{lstlisting}
+
+\begin{figure}[h]
+    \centering
+    \fbox{
+        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=897]
+            {assets/images/App.png}
+        }
+    \caption{Spark Application page displaying PBS Job properties}
+\end{figure}
