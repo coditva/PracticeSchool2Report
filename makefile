@@ -13,6 +13,7 @@ CHAPTERS  = chapters/appendices.tex \
             chapters/abstract.tex
 DEPS      = ${CHAPTERS} \
 			coverpage.sty \
+			config.tex \
 			assets/images/*
 
 .PHONY: all pdf

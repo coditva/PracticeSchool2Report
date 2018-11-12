@@ -1,24 +1,39 @@
 \documentclass[12pt, a4paper, oneside, titlepage]{report}
 \special{papersize=9in,11in}
 
+\usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage{titlesec}
 \usepackage{coverpage}
 \usepackage[paperwidth=9in, paperheight=11in, margin=1in]{geometry}
-\usepackage[bookmarks, hidelinks]{hyperref}
-%\usepackage{blindtext}
+\usepackage[pdfusetitle, bookmarks]{hyperref}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{listings}
 \usepackage{graphicx}
 
-
+%\usepackage{blindtext}
 \newcommand{\blindtext}[0]{}
+
+% import configuration and meta data
+\input{config.tex}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdfpagemode=Fullscreen,
+    pdftitle={Practice School 2 Report - \printtitle},
+    %pdfauthor={},
+    pdfsubject={\printsubject},
+    pdfkeywords={\printkeywords}
+}
+
 % define glossary items
 \makeglossaries
 \input{glossaryentries}
 
-\title{Addition of \gls{pbs} as a cluster manager in Apache \gls{spark}}
-\author{Utkarsh Maheshwari}
+\title{\printtitle}
+\author{\printauthor}
 
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{}{0pt}{\Huge}
