@@ -134,21 +134,29 @@ The \gls{spark} application has to be patched to allow setting \glssymbol{pbs}
 as a scheduler. Apart from this, the \gls{spark} application must be compiled
 with the overridden classes. This whole compiled version of \gls{spark} must be
 installed on each execution node of the cluster as well as the client node.
+In addtion, to submit an application to \gls{spark} on \glssymbol{pbs} cluster,
+there must also be a \glssymbol{pbs} client distribution installed on the client
+machine.
 
 \subsection{Usage}
 \paragraph{}
 The \gls{spark} application can be submitted just like it used to be submitted
 before the \glssymbol{pbs} integration with the commands following the similar
 pattern:
-\begin{lstlisting}
-    bin/spark-shell --master pbs
 
-    bin/spark-submit --master pbs --deploy-mode client \
-        --class <main-class> <application-jar> [application args]
+\begin{samepage}
+    \begin{itemize}
+        \item Submit \gls{spark} application on \glssymbol{pbs} cluster:\\
+            \texttt{bin/spark-shell --master pbs}
 
-    bin/spark-submit --master pbs --deploy-mode cluster \
-        --class <main-class> <application-jar> [application args]
-\end{lstlisting}
+        \item Submit application with \gls{driver} running locally:\\
+            \texttt{bin/spark-submit --master pbs --deploy-mode client}
+
+        \item Submit application with \gls{driver} running on the cluster:\\
+            \texttt{bin/spark-submit --master pbs --deploy-mode cluster}
+    \end{itemize}
+\end{samepage}
+
 
 \begin{figure}[h]
     \centering
@@ -158,3 +166,10 @@ pattern:
         }
     \caption{Spark Application page displaying PBS Job properties}
 \end{figure}
+
+\paragraph{}
+In this prototype, the result for the \gls{spark} application has to be checked
+using the PBS job logs as of now but that can be improved once the UI is in
+place. The master UI can read the logs of the job and display them on the
+application page in the webUI.
+
