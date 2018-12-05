@@ -44,7 +44,41 @@ memory or CPU cores does the spark application require. This information can
 only be acquired if we hack into the \gls{spark} codebase.
 
 
+
 \section{Implementation}
+
+\subsection{Submitting \gls{spark} applications on \glssymbol{pbs} cluster}
+
+\paragraph{} There is already support in \gls{spark} code-base for \gls{yarn},
+\gls{mesos} and \gls{kubernetes}. This is done by overriding the following
+classes in Spark:
+
+\paragraph{ExternalClusterManager} This class is responsible to create an
+instance of \texttt{SchedulerBackend} and \texttt{TaskScheduler}, and register
+them with the \gls{spark} application. It is discovered by the Spark build by
+the help of the \texttt{org.apache.spark.scheduler.ExternalClusterManager} file
+in \sloppy{\texttt{resource-managers/pbs/src/main/resources/META-INF/services/}}
+directory.
+
+\paragraph{SchedulerBackend} It is the back-end for the \gls{driver},
+responsible for starting the \glspl{executor} in the \gls{spark} cluster. We
+override the \texttt{SchedulerBackend} so that instead of starting
+\glspl{executor} on a \gls{spark} Slave, it now submits the \glspl{executor} as
+jobs to \glssymbol{pbs} via \texttt{qsub}.
+
+\paragraph{TaskScheduler} It schedules the sub-tasks for each application and
+sends them to the \glspl{executor} registered to that application. We chose not
+to override this and keep using the \gls{spark}'s implementation because we need
+not start a new \gls{executor} for each task but keep using the already started
+\gls{executor}. This is the Coarse Grained mode.
+
+\paragraph{SparkApplication}
+The above setup works well for a job where the \gls{driver} is run locally. But
+to allow the \gls{driver} to run remotely on a cluster, we must also be able to
+submit the \gls{driver} as a job in the cluster. To do this, we also override
+\texttt{SparkApplication} which is instantiated whenever a \gls{spark}
+application is submitted, to start the \gls{driver} as a \glssymbol{pbs} job in
+the cluster.
 
 \begin{figure}[h]
     \centering
@@ -55,14 +89,22 @@ only be acquired if we hack into the \gls{spark} codebase.
     \caption{Spark Cluster UI page displaying jobs on PBS Cluster}
 \end{figure}
 
-\subsection{Overriding Spark's cluster manager}
-\paragraph{}
-There is already support in \gls{spark} codebase for \gls{yarn}, \gls{mesos} and
-\gls{kubernetes}. This is done by overriding the \texttt{ExternalClusterManager}
-in Spark. This class is responsible to create an instance of
-\texttt{SchedulerBackend} which we also override. The \texttt{SchedulerBackend}
-is responsible to start the \glspl{executor} and we change that so that it
-now submits the \glspl{executor} as jobs to \glssymbol{pbs} instead.
+
+\subsection{Listing running \gls{spark} applications}
+
+\paragraph{\gls{spark} applications in qstat} The \gls{spark}
+application driver running on the \glssymbol{pbs} cluster shows up in the
+\texttt{qstat} as ``\texttt{sparkjob-}'' followed by the class name of the
+application. The executors connected to this application show up as
+``\texttt{sparkexec-}'' followed by the application name. The application
+driver does not show up when running in client mode which is expected.
+
+\paragraph{\gls{spark} applications in Web UI} The Spark applications running on
+the cluster get their own driver web UIs which are accessed on the \texttt{4040}
+port. There is also a master web UI page which is created by running the
+\texttt{org.apache.spark.deploy.pbs.ui.PbsClusterUI} class. This starts the
+cluster UI which lists all the \gls{spark} applications on the cluster. The user
+can also kill the applications by clicking the ``kill'' link on this page.
 
 \begin{figure}[h]
     \centering
@@ -73,24 +115,16 @@ now submits the \glspl{executor} as jobs to \glssymbol{pbs} instead.
     \caption{Spark Job page for each Spark Driver}
 \end{figure}
 
-\paragraph{}
-The above setup works well for a job where the \gls{driver} is run locally. But
-to allow the \gls{driver} to run remotely on a cluster, we must also be able to
-submit the \gls{driver} as a \glssymbol{pbs} job. To do this, we also override
-\texttt{SparkApplication} which is instantiated whenever a \gls{spark} job is
-submitted. This is responsible to start the \gls{driver} which we now just start
-as a \glssymbol{pbs} job.
 
-\begin{figure}[h]
-    \centering
-    \fbox{
-        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=849]
-            {assets/images/Executors.png}
-        }
-    \caption{Job page listing executors which are running on PBS cluster nodes}
-\end{figure}
+\subsection{Viewing results of the \gls{spark} application}
+
+\paragraph{} The results of the completed \gls{spark} application are stored as
+\glssymbol{pbs} job logs. The \texttt{stdout} and \texttt{stderr} are stored in
+separate files just like normal a \glssymbol{pbs} job. This can be improved
+later by making Web UI to read and display these logs to the user as a web page.
 
 
+\newpage
 \section{Result}
 
 \subsection{Installation}
@@ -102,6 +136,16 @@ installed on each execution node of the cluster as well as the client node.
 In addtion, to submit an application to \gls{spark} on \glssymbol{pbs} cluster,
 there must also be a \glssymbol{pbs} client distribution installed on the client
 machine.
+
+\begin{figure}[h]
+    \centering
+    \fbox{
+        \includegraphics[width=0.75 \textwidth, natwidth=1280, natheight=849]
+            {assets/images/Executors.png}
+        }
+    \caption{Job page listing executors which are running on PBS cluster nodes}
+\end{figure}
+
 
 \subsection{Usage}
 \paragraph{}
