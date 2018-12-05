@@ -1,12 +1,49 @@
+% vi:ft=tex
 
-THIS SECTION IS WORK IN PROGRESS\\
+\section{Final product}
+
+\paragraph{} The final working prototype was able to submit a job, execute jobs,
+list running jobs and show the result of the jobs successfully on a
+\glssymbol{pbs} cluster. This prototype can be built with the latest Spark
+(currently version \texttt{2.4.0}) and the latest Scala (currently version
+\texttt{2.12.7}).
+
 
 \section{Change for clients}
-Todo
 
-\section{Issues}
-Todo
+\paragraph{Job submission} The client see no change in submission of a
+\gls{spark} job on a \glssymbol{pbs} cluster except adding \texttt{--master pbs}
+as a command-line option while submission.
 
-\section{Further scope of improvement}
-Todo
+\paragraph{Job monitoring} The jobs can be seen on a webpage similar to
+\gls{spark}'s Master UI webpage. The users have the ability to kill jobs from
+this page itself.
 
+\paragraph{Job result and logs} The job result and logs are currently accessed
+as \glssymbol{pbs} job logs. This is a regression from what \gls{spark} users
+are used to. But this issue can be solved when the Web user interface is
+complete, which can fetch data from the job logs and display on a web page. This
+behavior is similar to \gls{spark}'s way for displaying job logs.
+
+
+\section{Issues and further scope of improvement}
+
+\paragraph{Security} In the current prototype, any user who can access the web
+UI is able to kill user jobs. This is because the kill request is sent as user
+who started the UI. Since the UI is started on the server by the user with job
+deletion rights and all kill requests are sent with that user, there is no way
+of differentiating between different users.
+
+\paragraph{Usability} The current prototype can be optimized to prevent
+deadlocks in the cluster by allocating one big chunk of resources at the same
+time rather than in smaller, per-executor chunks. Currently, the user also has
+to manually \texttt{scp} the resources to the server when submitting a job. This
+can be improved by using the stage-in utility of \glssymbol{pbs}.
+
+\paragraph{User Interface} The user interface of the current prototype can be
+improved to provide an interface very similar to \gls{spark} with application
+logs and such. There is a work-in-progress pull request on the prototype
+directory which will resolves this issue.
+
+\paragraph{} More issues can be found in the issues tab of the GitHub repository
+on the prototype. See references.
