@@ -46,34 +46,12 @@ demand as \glssymbol{hpc} jobs. To do this, we must know how many executors or
 memory or CPU cores does the spark application require. This information can
 only be acquired if we hack into the \gls{spark} codebase.
 
+\paragraph{}
+Please see \hyperref[sec:appendix-spark]{Appendix for \gls{spark}} for more
+information on \gls{spark}'s architecture.
+
 
 \section{Implementation}
-
-\subsection{Job submission in Spark}
-\paragraph{}
-A \gls{spark} job is a program written in either Java, Scala, Python or R. This
-program can be run interactively or in the background. The application itself
-which is responsible for breaking the program into subtasks and later assembling
-the result of the subtasks is called the \gls{driver}. When the program is
-started in interactive mode (by specifying \texttt{--deploy-mode client} or
-starting a shell), the driver is started on the client node itself. When the
-application is submitted in non-interactive mode (by specifying
-\texttt{--deploy-mode cluster}), the driver is started on a node in the cluster
-itself.
-
-\paragraph{}
-The \glspl{executor} are required to register to the \gls{driver} to
-receive tasks and return results. This is achieved by creating an RPC endpoint
-for each \gls{driver} to which the \glspl{executor} connect to. There are
-two ways in which an \gls{executor} can associate with a
-\gls{driver}:
-\begin{description}
-    \item[Coarse grained mode] In this mode, the \gls{executor} which is started
-        once is only stopped once the \gls{driver} ends or if it is explicitly
-        closed.
-    \item[Fine grained mode] In this mode, the \gls{executor} is started and
-        stopped dynamically for each task.
-\end{description}
 
 \begin{figure}[h]
     \centering
@@ -83,12 +61,6 @@ two ways in which an \gls{executor} can associate with a
         }
     \caption{Spark Cluster UI page displaying jobs on PBS Cluster}
 \end{figure}
-
-\subsection{Job submission in PBS}
-\paragraph{}
-The job submission in \glssymbol{pbs} is done via \texttt{qsub} command. The
-parameters of a typical job submission include the number of CPU cores, the
-amount of memory and the \gls{walltime} for the job.
 
 \subsection{Overriding Spark's cluster manager}
 \paragraph{}
@@ -172,4 +144,3 @@ In this prototype, the result for the \gls{spark} application has to be checked
 using the PBS job logs as of now but that can be improved once the UI is in
 place. The master UI can read the logs of the job and display them on the
 application page in the webUI.
-

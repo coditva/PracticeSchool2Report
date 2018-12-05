@@ -2,13 +2,86 @@
 
 \section{Portable Batch System (PBS)}
 
-\paragraph{}
-\glssymbol{pbs} is a workload management system that optimizes \gls{job}
-scheduling based on computing resources like number of CPU cores, memory, etc.
+\paragraph{} \glssymbol{pbs} is a workload management system that optimizes
+\gls{job} scheduling based on computing resources like number of CPU cores,
+memory, etc.
 
 
-\section{Apache Spark}
+\subsection{Architecture}
 
-\paragraph{}
+\paragraph{} The \glssymbol{pbs} architecture consists of \textbf{Server},
+\textbf{Scheduler}, \textbf{Comm} and \textbf{Machine Oriented Mini-server} or
+MOM. In a typical \glssymbol{pbs} cluster, there can be only one Server, one
+Comm, multiple Schedulers for different queues (based on priority, resources
+etc.) and multiple MOMs (one for each node in the cluster).
+
+\paragraph{} A PBS Server is responsible for taking a job from the client and
+sending it to a scheduler. The scheduler then either puts the job in queue or
+sends it to a MOM. The MOM is responsible to execute the job and return the
+result back to the Server. The Comm is responsible for communication between
+Server, Scheduler and MOMs.
 
 
+\subsection{Job submission in PBS}
+
+\paragraph{} The job submission in \glssymbol{pbs} is done via \texttt{qsub}
+command. The parameters of a typical job submission include the number of CPU
+cores, the amount of memory and the \gls{walltime} for the job.
+
+\paragraph{} The jobs running at any given time can be checked via the command
+\texttt{qstat}.
+
+
+
+\newpage{}
+\section{Apache Spark} \label{sec:appendix-spark}
+
+\paragraph{} \gls{spark} is an engine for writing Big Data applications to
+produce faster results on large quantities of data.
+
+
+\subsection{Architecture}
+
+\paragraph{} The \gls{spark} architecture consists of \textbf{Master} and
+\textbf{Slave} daemons in the Spark Standalone Cluster Manager and
+\textbf{\gls{driver}} and \textbf{\gls{executor}} which are two processes which
+can run on the mentioned daemons.
+
+\paragraph{Master and Slave Daemons} These are two daemons which are required to
+be started before any application can be executed on a Spark Cluster. There can
+be only one Master for each Spark Cluster and multiple Slaves (one for each node
+in the cluster). These daemons are responsible for scheduling applications on
+different nodes in the cluster. The Spark Applications are submitted to the
+Master and run on Slaves.
+
+\paragraph{\gls{driver} and \gls{executor}} These are two types of jobs which
+can run on a \gls{spark} cluster. Every \gls{spark} application has a
+\gls{driver} and multiple \glspl{executor}. A Driver is responsible for dividing
+an application into several sub-tasks and scheduling these tasks on the
+Executors. The Executors connect to the Driver, receive tasks from it, execute
+the tasks and return the result back to it.
+
+
+\subsection{Job submission in Spark}
+
+\paragraph{} A \gls{spark} job is a program written in either Java, Scala,
+Python or R. This program can be run interactively or in the background. The
+application itself which is responsible for breaking the program into subtasks
+and later assembling the result of the subtasks is called the \gls{driver}. When
+the program is started in interactive mode (by specifying
+\texttt{--deploy-mode client} or starting a shell), the driver is started on the
+client node itself. When the application is submitted in non-interactive mode
+(by specifying \texttt{--deploy-mode cluster}), the driver is started on a node
+in the cluster itself.
+
+\paragraph{} The \glspl{executor} are required to register to the \gls{driver}
+to receive tasks and return results. This is achieved by creating an RPC
+endpoint for each \gls{driver} to which the \glspl{executor} connect to. There
+are two ways in which an \gls{executor} can associate with a \gls{driver}:
+
+\paragraph{Coarse grained mode} In this mode, the \gls{executor} which is
+started once is only stopped once the \gls{driver} ends or if it is explicitly
+closed.
+
+\paragraph{Fine grained mode} In this mode, the \gls{executor} is started and
+stopped dynamically for each task.
