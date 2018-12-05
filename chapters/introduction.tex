@@ -1,15 +1,29 @@
-\paragraph{}
-\Gls{spark} is the leading frontrunner in Big Data Analytics and Machine
-Learning. A \gls{spark} application can run for days crunching on data and
-churning out results. This is why most \gls{spark} applications utilize a
+% vi:ft=tex
+
+\section{About Apache Spark?}
+
+\paragraph{} \Gls{spark} is the leading frontrunner in Big Data Analytics and
+Machine Learning. A \gls{spark} application can run for days crunching on data
+and churning out results. This is why most \gls{spark} applications utilize a
 cluster of nodes to execute tasks to decrease the time. A \gls{spark} cluster
 can be set up using its own cluster manager known as \gls{spark} Standalone
 Cluster Manager or one of third party cluster managers like \gls{yarn},
 \gls{mesos} or \gls{kubernetes}.
 
-\paragraph{}
-There are many orgranizations which require to run \gls{hpc} jobs as well as
-Big Data jobs on a cluster. But none of the cluster managers which integrate
-with \gls{spark} are capable of running an \gls{hpc} job, thus creating a need
-to add \gls{pbs} as a pluggable scheduler in \gls{spark}. This project aims to
-do just that.
+
+\section{About \glssymbol{pbs}}
+
+\paragraph{} \glssymbol{pbs} is a workload management system which optimizes
+\gls{job} scheduling in \gls{hpc} environments --- clusters, clouds and super
+computers. A \glssymbol{pbs} job can be anything from a batch script to a C/C++
+application. It is an open sourced application with commercial support also
+available which can be run on Linux or Windows platforms.
+
+
+\section{Need for adding \glssymbol{pbs} as a cluster manager in \gls{spark}}
+
+\paragraph{} There are many organizations which require running \gls{hpc} jobs
+as well as Big Data jobs on a cluster. But none of the cluster managers which
+integrate with \gls{spark} are capable of running an \gls{hpc} job, thus
+creating a need to add \gls{pbs} as a pluggable scheduler in \gls{spark}. This
+project aims to do just that.

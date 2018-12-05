@@ -3,15 +3,12 @@
 \section{Problem statement}
 
 \paragraph{}
-\glssymbol{pbs} is a workload management system which optimizes \gls{job}
-scheduling in \gls{hpc} environments --- clusters, clouds and super computers.
-\gls{spark} is a data analytics engine for large-scale data processing and has a
-standalone cluster manager which handles the spark jobs sent to a cluster of
-nodes. But for both of these, their own daemons should be running on the nodes
-and should have information about the node like number of CPU cores, memory
-available for use etc. Since they are two completely different programs, they
-have no way of knowing which node is in use by the other program at a given time
-and thus create problems when scheduling.
+For both \glssymbol{pbs} and \gls{spark}, their own daemons for the cluster are
+required to be running on the nodes in the cluster and should have information
+about the node like number of CPU cores, memory available for use etc. Since
+they are two completely different programs, they have no way of knowing which
+node is in use by the other program at a given time and thus create problems
+when scheduling.
 
 \paragraph{}
 The current workaround for the said problem is to segregate the nodes cluster
